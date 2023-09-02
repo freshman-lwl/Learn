@@ -75,6 +75,20 @@ ___粗斜体文本___
 
 
 ## 6. 链接
+链接使用方法如下：
+[链接名称](链接地址)或者<链接地址>  
+[Markdown-菜鸟教程](https://www.runoob.com/markdown/md-link.html)  
+
+或者通过**变量**设置链接，变量赋值在文档末尾进行：  
+\[网址名称][变量1]  
+\[变量1]: 网址
+
+这个链接用 1 作为网址变量 [Google][1]  
+这个链接用 runoob 作为网址变量 [Runoob][runoob]
+然后在文档的结尾为变量赋值（网址）  
+[1]: http://www.google.com/  
+[runoob]: http://www.runoob.com/
+
 
 ## 7. 图片
 
