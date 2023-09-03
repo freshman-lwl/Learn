@@ -6,7 +6,7 @@ gcc hello.c -o hello
 gcc aa.c bb.c cc.c dd.c ...
 ```
 make工具和Makefile则可以批量处理复杂的项目文件。  
-![Alt makefile作用](image.png "makefile作用")
+![Alt makefile作用](makefile%E4%BD%9C%E7%94%A8.png "makefile作用")
 
 ### (2) make和Makefile是什么关系？
 make工具:找出修改过的文件，根据依赖关系，找出受影响的相关文件，最后按照规则单独编译这些文件。
