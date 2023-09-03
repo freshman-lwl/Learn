@@ -15,7 +15,7 @@ Makefile文件:记录依赖关系和编译规则。
 
 ### (3)怎么学习Makefile?
 Makefile的本质:无论多么复杂的语法，都是为了更好地解决项目文件之间的依赖关系。  
-[Makefile学习思维导图](.) ![Makefile学习思维导图](Makefile%E5%AD%A6%E4%B9%A0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.png "Makefile学习思维导图")
+![Makefile学习思维导图](Makefile%E5%AD%A6%E4%B9%A0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.png "Makefile学习思维导图")
 
 ## 2. Makefile三要素
 
