@@ -1,4 +1,4 @@
-# 基础语法
+# Markdown语法
 ## 1. 标题
 使用 # 号可表示 1-6 级标题，一级标题对应一个 # 号，二级标题对应两个 # 号，以此类推。
 
@@ -120,7 +120,7 @@ Markdown 图片语法格式如下：
 <img decoding="async" src="http://static.runoob.com/images/runoob-logo.png" width="50%"> 
 
 ### (2) 本地图片   
-复制图片，然后粘贴到对应位置即可  
+复制图片，然后粘贴到对应位置即可。但是如果要显示本地图片，必须要上传图片文件。
 ![Alt 本地图片](image.png "本地图片实例")
 
 
