@@ -104,14 +104,14 @@ Makefile文件:记录依赖关系和编译规则。
 Makefile的本质:无论多么复杂的语法，都是为了更好地解决项目文件之间的依赖关系。  
 ![Makefile学习思维导图](Makefile%E5%AD%A6%E4%B9%A0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.png "Makefile学习思维导图")
 
-## 3. Makefile格式与执行规则
+## 3. Makefile规则与执行顺序
 
 ### (1) Makefile三要素
 
 目标、依赖、命令  
 在执行`make`命令后，makefile文件会先去执行依赖文件所对应的命令，最后再执行目标文件所对应的命令。
 
-### (2) makefile格式
+### (2) makefile规则
 > 目标:依赖的文件，或者是其他目标。  
 \<tab>命令1  
 \<tab>命令2  
@@ -146,7 +146,7 @@ targetc
 但是可以用**PHONY**指定伪目标，此时将忽略targets是否存在，直接运行commands。
 >.PHONY:target  
 
-### (3) 执行规则：
+### (3) 执行顺序
 GNU的make工作时的执行步骤
 1. 依次读取变量“MAKEFILES”定义的 makefile 文件列表
 2. 读取工作目录下的 makefile 文件（根据命名的查找顺序“GNUmakefile”，“makefile”，“Makefile”，首先找到那个就读取那个）
@@ -165,16 +165,22 @@ GNU的make工作时的执行步骤
 
 ## 4. makefile的变量和模式规则
 ### (1) 系统变量：
-不常使用，记住几个常用的即可
+不常使用，记住几个常用的即可  
+引用格式：$(NAME)
 ``` makefile
-CC=gcc #用于指定编译器的类型
+CC：默认值gcc #用于指定编译器的类型
 CPPFLAGS: C预处理的选项 如：-I
-CFLAGS：C编译器的选项 -Wall -g -c
+CFLAGS：C编译器的选项，-g -Wall -c
 LDFLAGS：链接器选项 -L -I
 AS：汇编器
-MAKE：make工具
-SRC_FILES变量：用于指定源文件列表
-OBJ_FILES变量：用于指定目标文件列表
+MAKE：make工具，默认值make
+RM：shell命令，rm -f
+SHELL：默认用/bin/sh解释执行shell脚本
+SRC_FILES：用于指定源文件列表
+OBJ_FILES：用于指定目标文件列表
+MAKEFLAGS：表示传递给 make 命令的所有参数。可以在Makefile 中通过 $(MAKEFLAGS) 来引用它
+MAKELEVEL：表示Make命令嵌套的层数，从0开始计数
+PWD：表示当前目录的绝对路径
 ```
 
 ### (2) 自定义变量：
@@ -238,8 +244,8 @@ all:
 ```
 执行`make`后，输出为：
 ```shell
-echo "123 456" #打印echo语句
-123 456 #echo语句打印变量A的值
+echo "123 456" 
+123 456 
 ```
 
 ### (3) 自动化变量：
@@ -336,12 +342,15 @@ endif
 ```
 如果变量VARIABLE被定义，则执行第一组命令；否则执行第二组命令。
 
-### (2) 常用函数
+### (2) 常用内嵌函数
 在makefile中所有的函数都是有返回值的。
 
 `wildcard`：查找指定目录下的指定类型的文件  
-例如：`src=$(wildcard *.c)`//找到当前目录下所有后缀为.c的文件，赋值给src。
+例如：`SRC=$(wildcard *.c)`//找到当前目录下所有后缀为.c的文件，赋值给src。
 
 `patsubst`：匹配替换  
-格式：`$(patsubst  pattern， replacement,text)`  
-例如：`obj=$(patsubst %.c,%.o,(dir))`//把dir变量里所有后缀为.c的文件替换成.o
+格式：`$(patsubst PATTERN, REPLACEMENT, TEXT)`  
+例如：`OBJ=$(patsubst %.c, %.o, $(SRC))`//把SRC目录下的所有后缀为.c的文件替换成.o
+
+### (3) 用户自定义函数
+
